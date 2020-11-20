@@ -106,6 +106,9 @@ border: 3px solid palevioletred;
     margin-bottom: 5px;
     margin-top: 15px;
 }
+.like {
+    color:red;
+}
 
 .image i {
     color: black;

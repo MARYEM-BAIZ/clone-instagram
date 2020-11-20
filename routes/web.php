@@ -17,40 +17,40 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/page',['uses'=>'UtilisateurController@page','as'=>'page.page']);
+Route::get('/page',['uses'=>'UtilisateurController@page','as'=>'page.page'])->middleware('auth');
 
-Route::get('/pagelogout',['uses'=>'UtilisateurController@pagelogout','as'=>'page.logout']);
+Route::get('/pagelogout',['uses'=>'UtilisateurController@pagelogout','as'=>'page.logout'])->middleware('auth');
 
-Route::get('/profile',['uses'=>'UtilisateurController@profile','as'=>'page.profile']);
+Route::get('/profile',['uses'=>'UtilisateurController@profile','as'=>'page.profile'])->middleware('auth');
 
-Route::get('/pub',['uses'=>'PublicationController@pub','as'=>'page.pub']);
+Route::get('/pub',['uses'=>'PublicationController@pub','as'=>'page.pub'])->middleware('auth');
 
-Route::get('/infopub/{id}',['uses'=>'UtilisateurController@infopub','as'=>'page.infopub']);
+Route::get('/infopub/{id}',['uses'=>'UtilisateurController@infopub','as'=>'page.infopub'])->middleware('auth');
 
-Route::post('/pub',['uses'=>'PublicationController@publierpub','as'=>'page.publierpub']);
-
-
-Route::get('/pubprofile',['uses'=>'PublicationController@publi_profile','as'=>'page.pubfrofile']);
-
-Route::get('/igtv',['uses'=>'PublicationController@igtv','as'=>'page.igtv']);
-
-Route::get('/like/{id}',['uses'=>'LikeController@like1','as'=>'page.like1']);
-Route::post('/like/{id}',['uses'=>'LikeController@like','as'=>'page.like']);
-
-Route::get('/save/{id}',['uses'=>'EnregistrementController@save1','as'=>'page.save1']);
-Route::post('/save/{id}',['uses'=>'EnregistrementController@save','as'=>'page.save']);
-Route::get('/enregistrements',['uses'=>'EnregistrementController@enregistrement','as'=>'page.enregistrement']);
+Route::post('/pub',['uses'=>'PublicationController@publierpub','as'=>'page.publierpub'])->middleware('auth');
 
 
-Route::get('/commentaire/{id}',['uses'=>'CommentaireController@commentaire1','as'=>'page.commentaire1']);
-Route::post('/commentaire/{id}',['uses'=>'CommentaireController@commentaire','as'=>'page.commentaire']);
+Route::get('/pubprofile',['uses'=>'PublicationController@publi_profile','as'=>'page.pubfrofile'])->middleware('auth');
 
-Route::get('/modifierprofile',['uses'=>'PublicationController@modifierprofile','as'=>'page.modifierprofile']);
-Route::post('/modifierprofile',['uses'=>'PublicationController@modifierprofilemo','as'=>'page.modifierprofilemo']);
+Route::get('/igtv',['uses'=>'PublicationController@igtv','as'=>'page.igtv'])->middleware('auth');
+
+Route::get('/like/{id}',['uses'=>'LikeController@like1','as'=>'page.like1'])->middleware('auth');
+Route::post('/like',['uses'=>'LikeController@like','as'=>'page.like'])->middleware('auth');
+
+Route::get('/save/{id}',['uses'=>'EnregistrementController@save1','as'=>'page.save1'])->middleware('auth');
+Route::post('/save/{id}',['uses'=>'EnregistrementController@save','as'=>'page.save'])->middleware('auth');
+Route::get('/enregistrements',['uses'=>'EnregistrementController@enregistrement','as'=>'page.enregistrement'])->middleware('auth');
+
+
+Route::get('/commentaire/{id}',['uses'=>'CommentaireController@commentaire1','as'=>'page.commentaire1'])->middleware('auth');
+Route::post('/commentaire/{id}',['uses'=>'CommentaireController@commentaire','as'=>'page.commentaire'])->middleware('auth');
+
+Route::get('/modifierprofile',['uses'=>'PublicationController@modifierprofile','as'=>'page.modifierprofile'])->middleware('auth');
+Route::post('/modifierprofile',['uses'=>'PublicationController@modifierprofilemo','as'=>'page.modifierprofilemo'])->middleware('auth');
 // Route::post('/modifierprofile',['uses'=>'PublicationController@modifierprofilemo1','as'=>'page.modifierprofilemo1']);
 // Route::post('/modifierprofile',['uses'=>'PublicationController@modifierprofilemo2','as'=>'page.modifierprofilemo2']);
 
-Route::get('/changermotdepasse',['uses'=>'PublicationController@changermotdepasse','as'=>'page.changermotdepasse']);
+Route::get('/changermotdepasse',['uses'=>'PublicationController@changermotdepasse','as'=>'page.changermotdepasse'])->middleware('auth');
 
 // Route::get('/page', function () {
 //     return view('page');
@@ -61,6 +61,6 @@ Route::post('/inscrire',['uses'=>'UtilisateurController@inscrire','as'=>'page.in
 
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/template', function () {
-    return view('template');
-})->name('template');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');

@@ -92,9 +92,10 @@
  <div>
  <img class="imagepub" src="{{ $publi->image }}" alt="image">
 <div class="image">
-         <form style="display:inline" class=" mr-5 ml-3" action="{{route('page.like',['id' => $publi->id])}}" method="post">
-         @csrf          
-             <button style="border:none ; background-color:white" type="submit" name="liker" >  <i class="fa fa-heart-o fa-2x" aria-hidden="true"></i></button>
+         <form id="like_form" style="display:inline" class=" mr-5 ml-3" action="" method="post">
+         @csrf        
+           <input  type="hidden" name="publi_id"   id="publication_id" value="{{$publi->id}}" >  
+             <button style="border:none ; background-color:white" type="submit" name="liker" id="like_{{$publi->id}}" >  <i class="fa fa-heart-o fa-2x"  aria-hidden="true"></i></button>
            </form>
          
 
@@ -107,7 +108,7 @@
 
 </div>
  </div>
- <p class="ml-3 mb-2">{{ $publi->likes->count()}} j'aime</p>
+ <p id="{{$publi->id}}" class="ml-3 mb-2">{{$publi->likes->count()}}</p>
  <p class="ml-3 mb-2"><strong>{{ $publi->user->name}}</strong> {{ $publi->description }} </p>
  <a href="{{route('page.infopub',['id' => $publi->id])}}"><p class="ml-3 mb-2">Afficher les {{ $publi->commentaires->count()}} commentaires</p> </a>
  
