@@ -27,6 +27,8 @@ Route::get('/pub',['uses'=>'PublicationController@pub','as'=>'page.pub'])->middl
 
 Route::get('/infopub/{id}',['uses'=>'UtilisateurController@infopub','as'=>'page.infopub'])->middleware('auth');
 
+Route::post('/like1',['uses'=>'UtilisateurController@like','as'=>'page.like1'])->middleware('auth');
+
 Route::post('/pub',['uses'=>'PublicationController@publierpub','as'=>'page.publierpub'])->middleware('auth');
 
 
@@ -38,12 +40,12 @@ Route::get('/like/{id}',['uses'=>'LikeController@like1','as'=>'page.like1'])->mi
 Route::post('/like',['uses'=>'LikeController@like','as'=>'page.like'])->middleware('auth');
 
 Route::get('/save/{id}',['uses'=>'EnregistrementController@save1','as'=>'page.save1'])->middleware('auth');
-Route::post('/save/{id}',['uses'=>'EnregistrementController@save','as'=>'page.save'])->middleware('auth');
+Route::post('/save',['uses'=>'EnregistrementController@save','as'=>'page.save'])->middleware('auth');
 Route::get('/enregistrements',['uses'=>'EnregistrementController@enregistrement','as'=>'page.enregistrement'])->middleware('auth');
 
 
 Route::get('/commentaire/{id}',['uses'=>'CommentaireController@commentaire1','as'=>'page.commentaire1'])->middleware('auth');
-Route::post('/commentaire/{id}',['uses'=>'CommentaireController@commentaire','as'=>'page.commentaire'])->middleware('auth');
+Route::post('/commentaire',['uses'=>'CommentaireController@commentaire','as'=>'page.commentaire'])->middleware('auth');
 
 Route::get('/modifierprofile',['uses'=>'PublicationController@modifierprofile','as'=>'page.modifierprofile'])->middleware('auth');
 Route::post('/modifierprofile',['uses'=>'PublicationController@modifierprofilemo','as'=>'page.modifierprofilemo'])->middleware('auth');

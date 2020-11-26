@@ -9,7 +9,7 @@
     <a href="">modifer la photo de profile</a>
     <form action="{{route('page.modifierprofilemo')}}" enctype="multipart/form-data" method="post">
  @csrf
- <input type="file" class="w-100" name="image">
+ <input type="file" class="w-100" name="image" >
     </div>
  </div>
  

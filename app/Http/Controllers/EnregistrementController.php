@@ -20,13 +20,25 @@ class EnregistrementController extends Controller
         return redirect()->route('page.page');
        }
     
-        public function save($id){
+        public function save(Request $request){
            //   dd(Auth::user()->id); 
-          $id1 = Auth::id(); 
-          $e=new Enregistrement;
-           $e->user_id=$id1;
-           $e->publication_id=$id;
-           $e->save();
+          
+     
+
+
+           $save = Enregistrement::where(['user_id' => Auth::id() , 'publication_id' => $request->publication_id])->get();
+          if ($save->count() > 0) {
+            $sa = Enregistrement::find($save[0]->id);
+            $sa->delete();
+          }
+
+          else {
+            $id1 = Auth::id(); 
+            $e=new Enregistrement;
+             $e->user_id=$id1;
+             $e->publication_id=$request->publication_id;
+             $e->save();
+          }
     
         // $publis= Publication::select()->where('id_user',$id)->get();
            return redirect()->route('page.page'); 

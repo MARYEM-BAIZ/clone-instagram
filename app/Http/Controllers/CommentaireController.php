@@ -22,25 +22,30 @@ class CommentaireController extends Controller
      
      }
 
-     public function commentaire( $id , Request $request){
+     public function commentaire(Request $request){
 
      
       //   dd(Auth::user()->id); 
+     
+
+
       $id1 = Auth::id(); 
 
-    $contenu=$request->input('contenu');
+    // $contenu=$request->input('contenu');
 
       $c= new Commentaire;
       $c->user_id=$id1;
-      $c->contenu_comment= $contenu;
-      $c->publication_id=$id;
+      $c->contenu_comment= $request->contenu;
+      $c->publication_id=$request->publication_id;
       $c->save();
 
     //   $publis= Publication::select()->where('id_user',$id)->get();
     //     return view('template')->with('publis',$publis);
+      
 
+     return redirect()->route('page.page'); 
+    // return response()->json(['nombre'=> $nombre, 'changer' => $like->count()]);
 
-    return redirect()->route('page.page'); 
 
      }
     

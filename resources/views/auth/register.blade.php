@@ -1,12 +1,16 @@
 <x-guest-layout>
-    <x-jet-authentication-card>
+
+<div style="margin-top:40px"  >
+          <img style=" display:block; margin-left:auto; margin-right:auto" src="{{asset('photos/instagram.jpg')}}" alt="image">
+          </div>
+    <!-- <x-jet-authentication-card>
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
         </x-slot>
 
-        <x-jet-validation-errors class="mb-4" />
+        <x-jet-validation-errors class="mb-4" /> -->
 
-        <form method="POST" action="{{ route('register') }}">
+        <form style=" border-radius:7px; width:40% ; border: 1px solid #eee ; box-shadow: 0 2px 3px #ccc; margin: 40px auto; padding:16px "  method="POST" action="{{ route('register') }}">
             @csrf
 
             <div>
@@ -34,9 +38,10 @@
                     {{ __('Already registered?') }}
                 </a>
 
-                <x-jet-button class="ml-4">
-                    {{ __('Register') }}
-                </x-jet-button>
+                <div class="ml-4 text-white px-3 py-2" style="background-color:rgb(39, 175, 164);border-radius:7px">
+              <button>  {{ __('Register') }}</button>
+                    </div>
+               
             </div>
         </form>
     </x-jet-authentication-card>

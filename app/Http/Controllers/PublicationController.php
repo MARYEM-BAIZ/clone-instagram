@@ -72,22 +72,32 @@ class PublicationController extends Controller
        $n=$request->input('name');
        $e=$request->input('email');
        
+         if (isset($request->image)) {
+            
+            $original_name =  $request->image->getClientOriginalName();
 
-       $original_name =  $request->image->getClientOriginalName();
+            $filename =  pathinfo($original_name,PATHINFO_FILENAME); 
+        
+            $extension =  $request->image->getClientOriginalExtension(); 
+        
+            $filename_store = $filename.time().'.'.$extension;
+        
+            $request->image->move('photos', $filename_store);
+        
+            $u=User::find(Auth::id());
+            $u->name=$n;
+            $u->email=$e;
+            $u->profile_photo_path='photos/'.$filename_store;
+            $u->save();
 
-       $filename =  pathinfo($original_name,PATHINFO_FILENAME); 
-   
-       $extension =  $request->image->getClientOriginalExtension(); 
-   
-       $filename_store = $filename.time().'.'.$extension;
-   
-       $request->image->move('photos', $filename_store);
-   
-       $u=User::find(Auth::id());
-       $u->name=$n;
-       $u->email=$e;
-       $u->profile_photo_path='photos/'.$filename_store;
-       $u->save();
+         }
+
+        else {
+         $u1=User::find(Auth::id());
+         $u1->name=$n;
+         $u1->email=$e;
+         $u1->save();
+        }
 
 
     
@@ -100,7 +110,9 @@ class PublicationController extends Controller
        
       
        
-       return view('publication_profile')->with('publis',$publis);
+   
+       return redirect()->route('page.pubfrofile')->with('publis',$publis); 
+
 
    }
 

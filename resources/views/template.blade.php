@@ -101,9 +101,10 @@
 
   <a href="{{route('page.infopub',['id' => $publi->id])}}"> <i class="fa fa-comment-o fa-2x  mr-5" aria-hidden="true"></i></a>
    <i class="fa fa-paper-plane fa-2x" aria-hidden="true"></i>
-   <form style="display:inline" class="pull-right mr-5" action="{{route('page.save',['id' => $publi->id])}}" method="post">
-         @csrf          
-             <button style="border:none ; background-color:white" type="submit" name="save" >   <i class="fa fa-bookmark-o fa-2x " aria-hidden="true"></i> </button>
+   <form id="save_form" style="display:inline" class="pull-right mr-5" action="" method="post">
+         @csrf  
+         <input  type="hidden" name="publi_id1"   id="publication_id1" value="{{$publi->id}}" >         
+             <button style="border:none ; background-color:white" type="submit" name="save" id="save_{{$publi->id}}" >   <i class="fa fa-bookmark-o fa-2x " aria-hidden="true"></i> </button>
            </form>
 
 </div>
@@ -133,10 +134,12 @@
 @endif
 </div>
  <hr>
- <form style=" display: flex; flex-direction: row " class="p-2 mb-2" method="post" action="{{route('page.commentaire',['id' => $publi->id])}}">
+ <form id="comment_form" style=" display: flex; flex-direction: row " class="p-2 mb-2" method="post" action="">
  @csrf 
-   <input style="border:none; padding-left:10px " type="text" name="contenu" placeholder="écrire un commentaire...">
-   <input style=" margin-left:225px " class="btn btn-inline text-info " type="submit" name="publier" value="publier">
+ <input  type="hidden" name="publi_id2"   id="publication_id2" value="{{$publi->id}}" >         
+
+   <input style="border:none; padding-left:10px " type="text" id="contenu_comment" name="contenu" placeholder="écrire un commentaire...">
+   <input style=" margin-left:225px " class="btn btn-inline text-info " type="submit" name="publier" id="comment_{{$publi->id}}" value="publier">
  </form>
  </section>
  @endforeach

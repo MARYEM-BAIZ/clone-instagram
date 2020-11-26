@@ -1,10 +1,15 @@
-<x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
-
-        <x-jet-validation-errors class="mb-4" />
+<x-guest-layout >
+          
+              <div style="margin-top:40px"  >
+          <img style=" display:block; margin-left:auto; margin-right:auto" src="{{asset('photos/instagram.jpg')}}" alt="image">
+          </div>
+    <!-- <x-jet-authentication-card >
+    
+        <x-slot name="logo"> -->
+            <!-- <x-jet-authentication-card-logo /> -->
+        <!-- </x-slot>
+         
+        <x-jet-validation-errors class="mb-4 " /> -->
 
         @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">
@@ -12,7 +17,9 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('login') }}">
+       
+
+        <form style=" border-radius:7px; width:40% ; border: 1px solid #eee ; box-shadow: 0 2px 3px #ccc; margin: 40px auto; padding:16px " method="POST" action="{{ route('login') }}">
             @csrf
 
             <div>
@@ -39,9 +46,11 @@
                     </a>
                 @endif
 
-                <x-jet-button class="ml-4">
-                    {{ __('Login') }}
-                </x-jet-button>
+              
+                    <div class="ml-4 text-white px-3 py-2" style="background-color:rgb(39, 175, 164);border-radius:7px">
+                    <button>{{ __('Login') }}</button>
+                    </div>
+               
             </div>
         </form>
     </x-jet-authentication-card>

@@ -53,6 +53,34 @@ class UtilisateurController extends Controller
         return redirect('/login');
     }
 
+
+
+    public function like(Request $request){
+        //   dd(Auth::user()->id); 
+     $like = Like::where(['user_id' => Auth::id() , 'publication_id' => $request->publication_id])->get();
+        if($like->count() > 0)
+        {
+           $l = Like::find($like[0]->id);
+           $l->delete();
+        }
+        else {
+        $id1 = Auth::id(); 
+        $l=new Like;
+        $l->user_id=$id1;
+        $l->publication_id=$request->publication_id;
+        $l->save();
+ 
+        }
+ 
+  
+       
+        $nombre = Publication::find($request->publication_id)->likes()->count();
+ 
+       return response()->json(['nombre'=> $nombre, 'changer' => $like->count()]);
+ 
+ 
+     }
+
      
 
 }
