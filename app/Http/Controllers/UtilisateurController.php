@@ -8,6 +8,7 @@ use App\Models\Publication;
 use App\Models\Commentaire;
 use App\Models\Enregistrement;
 use App\Models\Like;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class UtilisateurController extends Controller
@@ -19,10 +20,18 @@ class UtilisateurController extends Controller
         $comments= Commentaire::all();
         $publis= Publication::all();
         $publis1= Like::all();
-        return view('template')->with(['publis' => $publis ,'comments'=> $comments , 'publis1' => $publis1]);
+        $utilisateurs= User::all();
+        $u= User::find($id);
+        
+        return view('template')->with(['publis' => $publis ,'comments'=> $comments , 'publis1' => $publis1 , 'utilisateurs' => $utilisateurs , 'u'=> $u]);
     }
 
-    
+    public function pubutilisateur(){
+
+        $publis= Publication::all();
+        return view('publications_utilisateurs')->with('publis', $publis);
+
+    }
 
 
     public function infopub($id){
@@ -39,12 +48,13 @@ class UtilisateurController extends Controller
     //     return view('inscrire1');
     //  }
      public function profile(){
-        $id = Auth::id(); 
+        $id = Auth::id();
+       
 
         $publis= Publication::select()->where('user_id',$id)->get();
         $publis1= Like::all();
       
-        return view('profile_template')->with(['publis' => $publis  , 'publis1' => $publis1]);
+        return view('profile_template')->with(['publis' => $publis  , 'publis1' => $publis1 , 'uuu'=> $uuu]);
      }
 
     public function pagelogout(){

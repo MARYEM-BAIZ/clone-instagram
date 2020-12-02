@@ -19,8 +19,10 @@
 <div class="second">
 
 <h6><strong>{{ $publis->count()}}</strong> publications</h6>
-<h6 style=" margin-left:100px "><strong>103</strong> abonnés</h6>
-<h6 style=" margin-left:100px "><strong>168</strong> abonnements</h6>
+<h6 style=" margin-left:100px "><strong>@if(isset($uuu)) {{ $uuu->users->count() }} @endif </strong>suivis</h6>
+
+
+<h6 style=" margin-left:100px "><strong>@if(isset($u_suivi)){{ count($u_suivi) }}@endif</strong>suiveurs</h6>
 
 </div>
 

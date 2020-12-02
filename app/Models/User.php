@@ -75,4 +75,8 @@ class User extends Authenticatable
         return $this->hasMany(Enregistrement::class);
     }
 
+    public function users(){
+        return $this->belongsToMany(User::class , 'suivi_suiveur' , 'suivi_id' , 'suiveur_id');
+    }
+
 }

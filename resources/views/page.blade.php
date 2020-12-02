@@ -28,7 +28,7 @@
 
 <a href="">   <i style="font-size: 25px" class="fa fa-paper-plane " aria-hidden="true"></i></a>
 
-<a href=""><i style="font-size: 25px" class="fa fa-plus-square-o " aria-hidden="true"></i></a>
+<a href="{{route('page.pubutilisateur')}}"><i style="font-size: 25px" class="fa fa-plus-square-o " aria-hidden="true"></i></a>
 
 
 <div class="btn-group">

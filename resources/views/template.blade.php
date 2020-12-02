@@ -14,22 +14,23 @@
  <div class="carousel-item active">
    <!-- <img src="..." class="d-block w-100" alt="..."> -->
    <div class="row p-3">
-   <div class="col-3"><img class="stories" src="photos/cameron-ballard-jH_TNBKr_XU-unsplash.jpg" alt="image"></div>
-   <div class="col-3"> <img class="stories" src="photos/highlight-id-roHpoNuME1w-unsplash.jpg" alt="image"></div>
-   <div class="col-3"><img class="stories" src="photos/max-AsJirOOLN_s-unsplash.jpg" alt="image"></div>
-   <div class="col-3">  <img class="stories" src="photos/mikhail-vasilyev-NodtnCsLdTE-unsplash.jpg" alt="image"></div>
+   @if(isset($u))
+@foreach($u->users as $uu)
+   <div class="col-3"><img class="stories" src="{{ asset($uu->profile_photo_path) }}" alt="image"></div>
+   @endforeach
+@endif
    </div>
  </div>
- <div class="carousel-item">
+ <!-- <div class="carousel-item"> -->
    <!-- <img src="..." class="d-block w-100" alt="..."> -->
-  <div class="row p-3">
-   <div class="col-3"> <img class="stories" src="photos/mikhail-vasilyev-NodtnCsLdTE-unsplash.jpg" alt="image"></div>
-   <div class="col-3"><img class="stories" src="photos/ricardo-frantz-nEd9E9V8Qx0-unsplash.jpg" alt="image"></div>
-   <div class="col-3"><img class="stories" src="photos/mikhail-vasilyev-NodtnCsLdTE-unsplash.jpg" alt="image"></div>
-   <div class="col-3"><img class="stories" src="photos/max-AsJirOOLN_s-unsplash.jpg" alt="image"></div>
+  <!-- <div class="row p-3"> -->
+   <!-- <div class="col-3"> <img class="stories" src="photos/mikhail-vasilyev-NodtnCsLdTE-unsplash.jpg" alt="image"></div> -->
+   <!-- <div class="col-3"><img class="stories" src="photos/ricardo-frantz-nEd9E9V8Qx0-unsplash.jpg" alt="image"></div> -->
+   <!-- <div class="col-3"><img class="stories" src="photos/mikhail-vasilyev-NodtnCsLdTE-unsplash.jpg" alt="image"></div> -->
+   <!-- <div class="col-3"><img class="stories" src="photos/max-AsJirOOLN_s-unsplash.jpg" alt="image"></div> -->
    
-  </div>
- </div>
+  <!-- </div>
+ </div> -->
 </div>
 <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -60,6 +61,8 @@
 
 @if(isset($publis))
 @foreach($publis as $publi)
+@for($j=0; $j < $u->users->count() ; $j++)
+ @if($u->users[$j]->id == $publi->user->id )
 <section style="margin-bottom: 50px;" class="publication">
 
  <div  class="container p-0 mt-3 ">
@@ -142,9 +145,10 @@
    <input style=" margin-left:225px " class="btn btn-inline text-info " type="submit" name="publier" id="comment_{{$publi->id}}" value="publier">
  </form>
  </section>
+ @endif
+ @endfor
  @endforeach
 @endif
-
  </div>
 
 
@@ -164,39 +168,16 @@
   <div class="col-4"></div>
   <div class="col-2">voir tout</div>
   </div>
-
-
+  @if(isset($utilisateurs))
+  @foreach($utilisateurs as $utilisateur)
   <div class="row mb-3">
-   <div class="col-2"><img style="width:30px ; height:30px; border-radius:50% ; display:block ; margin-left:auto; margin-right:auto" src="photos/mikhail-vasilyev-NodtnCsLdTE-unsplash.jpg" alt="image"></div>
-   <div class="col-6"><p>utilisateur</p> </div>
+   <div class="col-2"><img style="width:30px ; height:30px; border-radius:50% ; display:block ; margin-left:auto; margin-right:auto" src="{{asset($utilisateur->profile_photo_path)}}" alt="image"></div>
+   <div class="col-6"><p>{{$utilisateur->name}}</p> </div>
    <div class="col-2"></div>
-   <div class="col-2"><a href="">Abonner</a></div>
+   <div class="col-2"><a href="{{route('page.suivre',['id' => $utilisateur->id])}}">Abonner</a></div>
    </div>
-
-
-   <div class="row mb-3">
-   <div class="col-2"><img style="width:30px ; height:30px; border-radius:50% ; display:block ; margin-left:auto; margin-right:auto" src="photos/max-AsJirOOLN_s-unsplash.jpg" alt="image"></div>
-   <div class="col-6"><p>utilisateur</p> </div>
-   <div class="col-2"></div>
-   <div class="col-2"><a href="">Abonner</a></div>
-   </div>
-
-
-   <div class="row mb-3">
-   <div class="col-2"><img style="width:30px ; height:30px; border-radius:50% ; display:block ; margin-left:auto; margin-right:auto" src="photos/mikhail-vasilyev-NodtnCsLdTE-unsplash.jpg" alt="image"></div>
-   <div class="col-6"><p>utilisateur</p> </div>
-   <div class="col-2"></div>
-   <div class="col-2"><a href="">Abonner</a></div>
-   </div>
-
-
-   <div class="row mb-3">
-   <div class="col-2"><img style="width:30px ; height:30px; border-radius:50% ; display:block ; margin-left:auto; margin-right:auto" src="photos/mikhail-vasilyev-NodtnCsLdTE-unsplash.jpg" alt="image"></div>
-   <div class="col-6"><p>utilisateur</p> </div>
-   <div class="col-2"></div>
-   <div class="col-2"><a href="">Abonner</a></div>
-   </div>
-
+   @endforeach
+@endif
 
 
   </div>

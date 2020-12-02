@@ -43,9 +43,9 @@ class CommentaireController extends Controller
     //     return view('template')->with('publis',$publis);
       
 
-     return redirect()->route('page.page'); 
+    //  return redirect()->route('page.page'); 
     // return response()->json(['nombre'=> $nombre, 'changer' => $like->count()]);
-
+     return response()->json('success','true');
 
      }
     

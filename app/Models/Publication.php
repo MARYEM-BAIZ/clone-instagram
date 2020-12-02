@@ -24,5 +24,6 @@ class Publication extends Model
     public function enregistrements(){
         return $this->hasMany(Enregistrement::class);
     }
+    
 
 }

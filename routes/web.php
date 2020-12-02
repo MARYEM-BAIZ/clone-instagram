@@ -19,6 +19,8 @@ Route::get('/', function () {
 
 Route::get('/page',['uses'=>'UtilisateurController@page','as'=>'page.page'])->middleware('auth');
 
+Route::get('/page_pub_utilisateur',['uses'=>'UtilisateurController@pubutilisateur','as'=>'page.pubutilisateur'])->middleware('auth');
+
 Route::get('/pagelogout',['uses'=>'UtilisateurController@pagelogout','as'=>'page.logout'])->middleware('auth');
 
 Route::get('/profile',['uses'=>'UtilisateurController@profile','as'=>'page.profile'])->middleware('auth');
@@ -57,6 +59,10 @@ Route::get('/changermotdepasse',['uses'=>'PublicationController@changermotdepass
 // Route::get('/page', function () {
 //     return view('page');
 // });
+
+
+Route::get('/suivre/{id}',['uses'=>'Controller@suivre','as'=>'page.suivre'])->middleware('auth');
+
 
 Route::post('/inscrire',['uses'=>'UtilisateurController@inscrire','as'=>'page.inscrire']);
 

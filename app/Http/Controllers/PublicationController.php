@@ -50,9 +50,23 @@ class PublicationController extends Controller
    public function publi_profile(){
     $id = Auth::id(); 
     $publis= Publication::select()->where('user_id',$id)->get();
+     $uuu= User::find($id);
 
+
+     $users= User::all();
+     $u_suivi=array();
+     for ($i=0; $i < $users->count() ; $i++) { 
+        for ($j=0; $j < $users[$i]->users->count() ; $j++) { 
+               $u2= $users[$i]->users[$j];
+               if ($u2->id == $id) {
+                      array_push( $u_suivi , $users[$i]);
+               }
+        }
+     }
+
+    // dd(count($u_suivi));
   
-    return view('publication_profile')->with('publis',$publis);
+    return view('publication_profile')->with(['publis' => $publis  , 'uuu'=> $uuu , 'u_suivi' => $u_suivi]);
    }
 
    public function igtv(){
